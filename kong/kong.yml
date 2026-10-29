@@ -1,0 +1,31 @@
+_format_version: "3.0"
+_transform: true
+
+# test.naimulhassan.me
+#   /api/* → host:4000
+#   /*     → host:3000
+#
+# After edits: docker compose restart kong
+
+services:
+  - name: api-service
+    url: https://naimul4001.naimulhassan.me
+    routes:
+      - name: api-route
+        hosts:
+          - mock.naimulhassan.me
+        paths:
+          - /api
+        strip_path: true
+        regex_priority: 100
+
+  - name: web-service
+    url: https://naimul4002.naimulhassan.me
+    routes:
+      - name: web-route
+        hosts:
+          - mock.naimulhassan.me
+        paths:
+          - /
+        strip_path: false
+        regex_priority: 0
