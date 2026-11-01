@@ -10,11 +10,3 @@ ENV KONG_DATABASE=off \
     KONG_LOG_LEVEL=info
 
 COPY kong/kong.yml /kong/kong.yml
-COPY entrypoint.sh /entrypoint.sh
-
-USER root
-RUN chmod +x /entrypoint.sh
-USER kong
-
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["kong", "docker-start"]
